@@ -1,7 +1,6 @@
 const geoip = require("geoip-lite");
 const {Sequelize} = require("sequelize");
 const getUrlTitle = require("get-url-title")
-const sequelize = require("sequelize");
 
 /**
  * Dependence
@@ -250,10 +249,8 @@ module.exports = (app) => {
                     attributes: [
                         'user_agent',
                         'platform',
-                        'date_added',
-                        [sequelize.fn('DATE', sequelize.col('date_added')), 'Date']
+                        'date_added'
                     ],
-                    group: [sequelize.fn('DATE', sequelize.col('date_added')), 'Date'],
                     include: [{
                         model: city,
                         attributes: [
