@@ -7,7 +7,13 @@ module.exports = (app) => {
     /**
      * Controllers
      */
-    const {createShortUrl, get, getStatistic, getAll} = app.controllers.urls
+    const {
+        createShortUrl,
+        get,
+        getStatistic,
+        getAllTransitions,
+        getAll
+    } = app.controllers.urls
     const {checkUserAuth} = app.middleware.authorization
 
     /**
@@ -15,6 +21,7 @@ module.exports = (app) => {
      */
     api.post('/url', checkUserAuth, createShortUrl)
     api.get('/url', checkUserAuth, getAll)
+    api.get('/url/transitions', checkUserAuth, getAllTransitions)
     api.post('/url/:url_id', checkUserAuth, getStatistic)
     api.get('/:short_url', get)
 }

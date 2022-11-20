@@ -8,7 +8,6 @@ module.exports = function (app) {
 
         if (_access_token) {
             const info = await validateAccessToken(_access_token)
-            console.log(info)
             if (info) {
                 const exist = await user_token.findOne({
                     where: {

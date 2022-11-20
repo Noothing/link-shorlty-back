@@ -288,6 +288,56 @@ module.exports = (app) => {
         }
     }
 
+    this.getAllTransitions = async (req, res, next) => {
+        const user_id = req.user_id
+
+        try {
+            const url = await url_transitions.findAll({
+                attributes: [
+                    'user_agent',
+                    'platform'
+                ],
+                include: [
+                    urls, {
+                        model: urls,
+                        attributes: ['id'],
+                        where: {
+                            user_id: user_id
+                        },
+                    },
+                    city, {
+                        model: city,
+                        attributes: [
+                            'name',
+                        ],
+                        include: [{
+                            model: country,
+                            attributes: [
+                                'name',
+                            ]
+                        }]
+                    }
+                ]
+            })
+
+            res.status(200)
+                .send({
+                    success: true,
+                    data: {
+                        urls: url
+                    }
+                })
+        } catch (e) {
+            console.log(e)
+            res
+                .status(500)
+                .send({
+                    success: false,
+                    error: 'Internal server error'
+                })
+        }
+    }
+
     // Returns
     return this
 }

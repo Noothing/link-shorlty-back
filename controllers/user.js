@@ -324,5 +324,14 @@ module.exports = (app) => {
         }
     }
 
+    this.logout = async (req, res, next) => {
+        res
+            .clearCookie('_access_token')
+            .status(200)
+            .send({
+                success: true
+            })
+    }
+
     return this
 }
