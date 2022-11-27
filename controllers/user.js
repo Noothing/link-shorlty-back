@@ -120,15 +120,15 @@ module.exports = (app) => {
                             .status(403)
                             .send({
                                 success: false,
-                                error: 'Invalid password'
+                                error: 'Invalid username or password'
                             })
                     }
                 } else {
                     res
-                        .status(404)
+                        .status(403)
                         .send({
                             success: false,
-                            error: 'Account not fount'
+                            error: 'Invalid username or password'
                         })
                 }
             } else {
