@@ -25,7 +25,6 @@ consign({
     .then('models')
     .then('utils')
     .then('middleware/association.js')
-    .then('middleware/authorization.js')
     .then('controllers')
     .then('cron')
     .then('system/run.js')
